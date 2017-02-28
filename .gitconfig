@@ -1,0 +1,70 @@
+[user]
+	email = bjp9@duke.edu
+	name = Benjamin Phillips
+[core]
+  autocrlf = input
+  safecrlf = true
+  excludesfile = /home/bjp9/.gitignore
+[color]
+  diff = auto
+  status = auto
+  branch = auto
+[alias]
+  ap = add -p
+  co = checkout
+  cob = checkout -b
+  ci = commit -v
+	cl = clone
+	cp = cherry-pick
+	d = diff
+  dc = diff --cached
+	dw = diff --word-diff
+  st = status
+  br = branch
+	br-all = "!git branch -a" # all local and remote branches
+  br-remotes = "!git branch -r" # only remote branches
+  type = cat-file -t
+  dump = cat-file -p
+  update = !git pull && git submodule update --init --recursive
+
+	# stash operations
+  sl = stash list
+  sa = stash apply
+  ss = stash save
+
+	# Show the last tag:
+  lt = describe --tags --abbrev=0
+
+  # list all alises
+  la = "!git config -l | grep alias | cut -c 7-"
+
+  # show history of a file with diffs
+  filelog = log -u
+  fl = log -u
+  # show modified files in last commit
+  dl = "!git ll -1"
+
+  # diff last commit
+  dlc = diff --cached HEAD^
+
+	# log
+  l = log
+  ll = log -p
+  ls = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate
+  ll = log --pretty=format:"%C(yellow)%h%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --numstat
+  lds = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=short
+  ld = log --pretty=format:"%C(yellow)%h\\ %ad%Cred%d\\ %Creset%s%Cblue\\ [%cn]" --decorate --date=relative
+  le = log --oneline --decorate
+	hist = log --pretty=format:'%h %ad | %s%d [%an]' --graph --date=short
+
+	# git chglg <tag>..<tag> > <file-path>
+  chglg = log --pretty=format:'%h %cn %cE %aD %n %n %x09  %s %n %n'\
+
+	# Submodule
+	update = !git pull && git submodule update --init --recursive # pulls parent repo and initializes the submodule to the index in the parent (must be called in the parent repo)
+  sm-pull = !git submodule foreach git pull origin # You can supply a branch to pull, otherwise it pulls the default branch
+
+[credential]
+	helper = /usr/share/doc/git/contrib/credential/gnome-keyring/git-credential-gnome-keyring
+[push]
+	default = simple
